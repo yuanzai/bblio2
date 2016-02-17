@@ -1,0 +1,48 @@
+
+<head>
+<link href="{{ STATIC_URL }}bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+function SubmitFrm(){
+var Searchtxt = document.getElementById("txtSearch").value;
+window.location = "{% url 'search.views.index' %}search/?q=" + encodeURIComponent(Searchtxt);
+}
+</script>
+</head>
+<div class="container">
+<form action="{% url 'search.views.index' %}" method="post">
+{% csrf_token %}
+
+<h1>bblio</h1>
+
+<p><input type="text" name="search_term" size="50"/><input type="submit" value="Search" /></p>
+<br>
+</form>
+
+
+<input name="txtSearch" type="text" id="txtSearch" size="80" value=""  onkeydown="if (event.keyCode == 13) document.getElementById('btnSearch').click()" />
+<input type="submit" name="btnSearch" value="Search" id="btnSearch" onclick="SubmitFrm(); return false;"/>
+Document Count : {{ count }}
+
+<hr>
+<ul>
+
+{% for r in result_list %}
+
+<p>
+<a href="{{r.urlAddress}}">{{ r.title }}</a><font size ="1px"> - score {{r.score}} - id: {{ r.id }}<br>
+{{ r.urlAddress }}
+</font><br>
+<font size="2px">
+{% autoescape off %}
+{% for h in r.highlight %}
+{{ h }}<br>
+{% endfor %}
+{% endautoescape %}
+</font>
+</p>
+
+{% endfor %}
+
+</font>
+
+</div>

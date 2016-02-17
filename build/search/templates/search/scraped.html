@@ -1,0 +1,28 @@
+
+<form action="{% url 'search.views.scraped' site_id %}" method="post">
+{% csrf_token %}
+{{ form }}
+<input type="submit" value="Submit" />
+</form>
+
+<table>
+<tr>
+<td>
+Is Used
+</td>
+<td>
+URL
+</td>
+</tr>
+{% for doc in docs %}
+<tr>
+<td>
+{{ doc.isUsed }}
+</td>
+<td>
+<a href="{{ doc.urlAddress }}">{{ doc.urlAddress }} </a>
+</td>
+</tr>
+{% endfor %}
+
+

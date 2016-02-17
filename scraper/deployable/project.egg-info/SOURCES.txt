@@ -1,0 +1,12 @@
+setup.py
+deployable/__init__.py
+deployable/items.py
+deployable/pipelines.py
+deployable/settings.py
+deployable/spiders/__init__.py
+deployable/spiders/spiderAll.py
+project.egg-info/PKG-INFO
+project.egg-info/SOURCES.txt
+project.egg-info/dependency_links.txt
+project.egg-info/entry_points.txt
+project.egg-info/top_level.txt

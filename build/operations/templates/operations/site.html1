@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="{{ STATIC_URL }}bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css">
+
+
+</head>
+<div class="container">
+    {% if site_id == '0' %}
+    <h1>New Site</h1>
+    {% else %}
+    <h1>Site {{ site_id }}</h1>
+    {% endif %}
+<form action="{% url 'operations.views.site' site_id %}" method="post" role="form">
+{% csrf_token %}
+
+<div class="row">
+    <div class="col-xs-3">
+        {{ site_form.name.label_tag }}
+        {{ site_form.name }}
+    </div>
+    <div class="col-xs-3">
+        {{ site_form.grouping.label_tag }}
+        {{ site_form.grouping }}
+    </div>
+    <div class="col-xs-2">
+        {{ site_form.depthlimit.label_tag }}
+        {{ site_form.depthlimit }}
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-xs-4">
+        {{ site_form.source_allowed_domains.label_tag }}
+        {{ site_form.source_allowed_domains }}
+    </div>
+
+    <div class="col-xs-4">
+        {{ site_form.source_start_urls.label_tag }}
+        {{ site_form.source_start_urls }}
+    </div>
+</div>
+
+<br>
+<div class="row">
+    <div class="col-xs-4">
+        {{ site_form.source_allowParse.label_tag }}
+        {{ site_form.source_allowParse }}
+    </div>
+
+    <div class="col-xs-4">
+        {{ site_form.source_denyParse.label_tag }}
+        {{ site_form.source_denyParse }}
+    </div>
+</div>
+
+<br>
+<div class="row">
+    <div class="col-xs-4">
+        {{ site_form.source_allowFollow.label_tag }}
+        {{ site_form.source_allowFollow }}
+    </div>
+
+    <div class="col-xs-4">
+        {{ site_form.source_denyFollow.label_tag }}
+        {{ site_form.source_denyFollow }}
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-xs-2">
+        <input type="submit" value="Submit" class="form-control"> 
+    </div>
+
+    <div class="col-xs-2">
+        <a href="{% url 'operations.views.es_delete' site_id %}">ES Index Delete only</a>
+    </div>
+    <div class="col-xs-2">
+        <a href="{% url 'operations.views.duplicate_filter' site_id %}">Duplicate Filter</a>
+    </div>
+
+    <div class="col-xs-2">
+        <a href="{% url 'operations.views.reset_to_zero' site_id %}">Reset To Zero</a>
+    </div>
+
+</form>
+<br>
+{% if docs %}
+<hr>
+Document Count : {{ doc_count }} || Zero Count : {{ zero_count }}
+<table class="table">
+<tr>
+<td>
+    <b>Is Used</b>
+</td>
+<td>
+    <b>URL</b>
+</td>
+</tr>
+{% for doc in docs %}
+<tr>
+<td>
+{{ doc.isUsed }}
+</td>
+<td>
+<a href="{{ doc.urlAddress }}">{{ doc.urlAddress }} </a>
+</td>
+</tr>
+{% endfor %}
+{% endif %}
+</div>
+</html>

@@ -1,0 +1,36 @@
+
+<head>
+<link href="{{ STATIC_URL }}bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<form action="{% url 'search.views.index' %}" method="post">
+{% csrf_token %}
+
+<font face="Helvetica"><h1>b.blio</h1>
+
+<p><input type="text" name="search_term" size="50"/><input type="submit" value="Search" /></p>
+<br>
+</form>
+Document Count : {{ count }}
+
+<hr>
+<ul>
+
+{% for r in result_list %}
+
+<p>
+<a href="{{r.urlAddress}}">{{ r.title }}</a><font size ="1px"> - score {{r.score}} - id: {{ r.id }}</font><br>
+
+<font size="2px">
+{% autoescape off %}
+{% for h in r.highlight %}
+.. {{ h }} ..<br>
+{% endfor %}
+{% endautoescape %}
+</font>
+</p>
+
+{% endfor %}
+
+</font>

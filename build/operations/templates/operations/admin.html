@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "operations/operations_css.html" %} <!-- CSS FILE -->
+</head>
+<body>
+{% include "operations/operations_navbar.html" %} <!-- NAV BAR -->
+<div class="container">
+    <div class="row">
+        <div class="col-xs-6">
+        <form action="{% url 'operations:admin' %}" method="post" role="form">
+            {% csrf_token %}
+            {{ form.as_p }}
+        <input class="btn btn-primary" type="submit" value="Submit">
+        </form>
+        </div>
+        <div class="col-xs-6">
+            <br>
+            <a class="btn btn-default" href="{% url 'operations:admin_push' %}">Copy crawler files to workers</a>
+        </div>
+        </div>
+    <div>
+</body>
+</html>

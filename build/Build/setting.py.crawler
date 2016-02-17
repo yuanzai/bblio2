@@ -1,0 +1,44 @@
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'kh(odjhmig8dvjgv%vvrt4*s$zn91lo!2waa0hqact7n5x-nw+'
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+
+TEMPLATE_DEBUG = True
+
+ALLOWED_HOSTS = []
+
+
+# Application definition
+
+INSTALLED_APPS = (
+    'SearchConfig',
+    'BuildConfig',
+)
+
+# https://docs.djangoproject.com/en/1.6/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'scrapedata',
+        'USER': 'yuanzai',
+        'PASSWORD': 'wakaff01',
+        'HOST': 'bblio.cxo6rxxzg0qa.us-west-2.rds.amazonaws.com',
+        #'HOST': '54.213.146.183',
+        'PORT': '3306',
+    }
+}
+
+# Internationalization
+# https://docs.djangoproject.com/en/1.6/topics/i18n/
+
+LANGUAGE_CODE = 'en-us'
+
+TIME_ZONE = 'UTC'
+
+USE_I18N = True
+
+USE_L10N = True
+
+USE_TZ = True

@@ -1,0 +1,18 @@
+
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'operations:index' %}">LitigoSearch Operations</a>
+        <div class="container">
+        <ul class ="nav navbar-nav navbar-right"> 
+        <li><a href="#" class="navbar-link">Zeroes <span class="badge">{{ zero_count }}</span>
+            </a></li>
+        <li><a href="#" class="navbar-link">Indexed <span class="badge">{{ es_count }}</span>
+            </a></li>
+        <li><a href="{% url 'operations:admin' %}" class="navbar-link">Admin</a></li>
+        <li><a href="{% url 'operations:sites' %}" class="navbar-link">Sites</a></li>
+        <li><a href="{% url 'operations:tester' %}" class="navbar-link">Tester</a></li>
+    </ul>
+    </div>
+    </div>
+</nav>

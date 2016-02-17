@@ -1,0 +1,9 @@
+{% for l in list %}
+
+
+<a href="#" id="tree" level="{{ level }}" linkno="{{ l.linkno }}" url="{{ l.url }}">Tree [L{{level}}]</a>
+|
+<a href="{{ l.url }}" class="{{ l.allow }}" target="_blank" title="{{ l.params }}">{{ l.url }}</a>
+<style>div.tree { padding-left: 30px; }</style>
+<div id="linklevel{{ level }}_{{ l.linkno }}" class="tree"></div>
+{% endfor %}

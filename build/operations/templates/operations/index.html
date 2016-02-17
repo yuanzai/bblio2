@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include "operations/operations_css.html" %}
+
+</head>
+<body>
+{% include "operations/operations_navbar.html" %}
+
+
+<div class="container">
+
+    <h3>Operations Console</h3>
+    <ul>
+        <li><a href="{% url 'operations:sites' %}">Sites</a>
+        <li><a href="{% url 'operations:tester' %}">Tester</a>
+    </ul>
+
+    </div>
+</body>
+</html>
+

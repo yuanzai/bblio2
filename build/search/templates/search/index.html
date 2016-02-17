@@ -1,0 +1,141 @@
+
+<head>
+{% load staticfiles %}
+<link href="{% static "bootstrap/dist/css/bootstrap.css" %}" rel="stylesheet" type="text/css">
+
+<style>
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+function SubmitFrm(){
+var Searchtxt = document.getElementById("txtSearch").value;
+var jurisdiction = '';
+
+if (!document.getElementById("all").checked) {
+    var boxes = document.getElementsByName("country");
+    for (var i = 0; i<boxes.length; i++) {
+        if (boxes[i].checked) {
+            jurisdiction = jurisdiction + '&' + boxes[i].value + '=true';
+         }
+    }
+}
+window.location = "{% url 'search.views.index' %}?q=" + encodeURIComponent(Searchtxt) + jurisdiction;
+}
+</script>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.9.1.js"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  <script>
+    $(function() {
+        var txt = encodeURIComponent($("#txtSearch").val())
+        $( "#txtSearch" ).autocomplete({
+            source: "{% url 'search.views.autocomplete' %}"  + txt,
+            minLength: 3,
+        });
+    });
+
+    
+    $(function() {
+        function checkAll() {
+            $('[name="country"]').each(function() {
+                    $(this).prop('checked',true);
+                });
+        };
+    
+
+        $('#all').change(function() {
+            checkAll();
+            $(this).prop('disabled',true);
+        });
+            
+        $('[name="country"]').change(function() {
+            var allChecked = true;
+            var allBlank = true;
+        $('[name="country"]').each(function() {
+                if (this.checked) {
+                    allBlank = false;
+                } else {
+                    allChecked = false;
+                }
+            });
+            
+            if (allChecked || allBlank) {
+                checkAll();
+                $('#all').prop('checked',true);
+                $('#all').prop('disabled',true);
+            } else {
+                $('#all').prop('checked',false);
+                $('#all').prop('disabled',false);
+            }
+        });
+    });
+
+  </script>
+
+
+</head>
+{% include 'search/navbar.html' %}
+<div class="container">
+<body>
+<h3>LitigoSearch</h3>
+
+<form>
+<input name="txtSearch" type="text" id="txtSearch" size="80" value="{{ last_search }}"  onkeydown="if (event.keyCode == 13) document.getElementById('btnSearch').click()" >
+<input type="submit" name="btnSearch" value="Search" id="btnSearch" onclick="SubmitFrm(); return false;"/>
+<br>
+<input type="checkbox" id="all" name="all" value="all" {% if not custom %} checked disabled {% endif %}><label>All</label>
+{% for boxes in form %}
+{% for box in boxes %}
+{{ box }}
+{% endfor %}
+{% endfor %}
+
+</form>
+{% if suggestion %}
+<b>Did you mean <a href="{% url 'search.views.index' %}?q={{ suggestion_urlencode }}">{{ suggestion }}</a></b><p><br>
+{% endif %}
+
+{% if result_count == 0 %}
+<font size ="1px"> No search results found</font>
+{% endif %}
+{% if result_count %}
+<font size ="1px"> {{ result_count }} search results found</font>
+<hr>
+<ul>
+{% for r in result_list %}
+
+<p>
+<a href="{{r.urlAddress}}">{{ r.title }}</a><font size ="1px"> - score {{r.score}} - id: {{ r.id }}<br>
+{{ r.urlAddress }}
+</font><br>
+<font size="2px">
+    {% autoescape off %}
+{% for h in r.highlight %}
+    {{ h }}<br>
+{% endfor %}
+    {% endautoescape %}
+</font>
+</p>
+
+{% endfor %}
+
+</font>
+</body>
+
+{% if last_search %}
+{% for l in linklist %}
+
+{% ifequal l page %}
+<b>{{ l }}</b> |
+{% else %}
+<a href="{{ last_search_url }}&p={{ l }}">{{ l }}</a> |
+{% endifequal %}
+
+{% endfor %}
+{% endif %}
+{% endif %}
+
+
+</div>

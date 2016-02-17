@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+{% load staticfiles %}
+<link href="{% static "bootstrap/dist/css/bootstrap.css"%}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="container">
+    <h3> Phrase list</h3>
+    <div class="row">
+    <div class="col-xs-6">
+    <form action="{% url 'operations:phrases' %}" method="post" role="form">
+        {%  csrf_token %}
+        {{ form }}
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-2">
+    <input type="submit" value="Submit" class="form-control">
+    </div>    
+</div>
+</form>
+<hr>
+{% if phrases %}
+{% for p in phrases %}
+<br>{{ p.phrase }}</br>
+{% endfor %}
+{% endif %}
+</div>
+</body>

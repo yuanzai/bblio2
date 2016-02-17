@@ -1,0 +1,63 @@
+<head>
+<link href="{{ STATIC_URL }}bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" type="text/css">
+</head>
+<h1>BBLIO Testing Admin</h1>
+<form action="{% url 'search.views.testing' %}" method="post">
+<p>
+{% csrf_token %}
+<input type="text" name="search_term" size="120" {% if last_search %}value="{{ last_search }}" {% endif %}/>
+<input type="submit" value="Search" /></p>
+</form>
+
+{% if list %}
+<form action="{% url 'search.views.testing_input' %}" method="post">
+{% csrf_token %}
+
+<hr>
+{% for p in page %}
+
+{{ p.label_tag }}
+{{ p }}
+{% endfor %}
+<input type="submit" value="Submit" />
+<hr>
+
+<table>
+<tr>
+<td>
+<b>Score</b>
+</td>
+<td>
+<b>Result</b>
+</td>
+</tr>
+{{ formset.management_form }}
+{% for form,r in list %}
+<tr>
+<td>
+{% for f in form %}
+{{ f }}
+{% endfor %}
+</td>
+<td>
+<a href="{{r.urlAddress}}">{{ r.title }}</a><font size ="1px"> - score {{r.score}} - id: {{ r.id }}</font><br>
+
+<font size="2px">
+{% autoescape off %}
+{% for h in r.highlight %}
+{{ h }}<br>
+{% endfor %}
+{% endautoescape %}
+</font>
+</td>
+</tr>
+{% endfor %}
+</table>
+</form>
+{% endif %}
+
+{% if last_search %}
+{% for l in linklist %}
+<a href="{% url 'search.views.testsearch' query=last_search page=l %}">{{ l }}</a> |
+{% endfor %}
+{% endif %}
