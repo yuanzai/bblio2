@@ -128,14 +128,14 @@ class YTHESController(BaseESController):
         """
         l = []
         for re in res['hits']['hits']:
-            d = {"urlAddress" : re['fields']['urlAddress'],
+            d = {"urlAddress" : re['fields']['urlAddress'][0],
                  "id" : re['_id'],
                  "score" : re['_score'],}
            
             try:
-                d.update({"title": re['fields']['title']})
+                d.update({"title": re['fields']['title'][0]})
             except:
-                d.update({"title": d['urlAddress']})
+                d.update({"title": d['urlAddress'][0]})
 
             try:
                 h_list = []

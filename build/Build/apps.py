@@ -21,3 +21,8 @@ class ScraperConfig(AppConfig):
 
 class LauConfig(AppConfig):
     name = 'lau'
+
+class EmplifiveConfig(AppConfig):
+    name = 'emplifive'
+#class ImpConfig(AppConfig):
+#    name = 'imp'

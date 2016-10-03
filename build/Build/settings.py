@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'Build.apps.OperationsConfig',
     'Build.apps.ScraperConfig',
     'Build.apps.LauConfig',
+    'Build.apps.EmplifiveConfig',
     ]
 
 MIDDLEWARE_CLASSES = [

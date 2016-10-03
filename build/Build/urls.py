@@ -4,7 +4,7 @@ import operations.urls
 import testscrape.urls
 import lau.views
 from django.http import HttpResponse
-
+import emplifive.urls
 
 
 
@@ -15,6 +15,12 @@ urlpatterns = [
 
     #home page
     url(r'^$',lau.views.index),
+    
+    #electric imp project
+    url(r'^imp/', lau.views.imp, name='imp'),
+    
+    url(r'^emplifive/', include('emplifive.urls', namespace='emplifive'), name='emplifive'),
+
     #url(r'^admin/', include(admin.site.urls)),
     url(r'^testing_input/$',search.views.testing_input, name='testing_input'),
     url(r'^testing/$',search.views.testing, name='testing'),

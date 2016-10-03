@@ -1,16 +1,79 @@
-<h3>HELLO WORLD</h3>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
 
-<p>
-This is Lau in plaintext.
-</p>
-<p>
-Find me on:
-<br><a href="https://github.com/yuanzai">Github</a>
-<br><a href="https://www.linkedin.com/in/junyuan-lau-b288a0a">LinkedIn</a>
-</p>
+		<title>Lau</title>
 
-<br>
-Check out my legal search engine project <a href="{% url 'index' %}">here</a>
-<br>
-See the UI for the engine's curated webscraper <a href="{% url 'operations:index' %}">here</a>
-    
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="static/css/style.css">
+		<link rel="shortcut icon" href="static/img/favicon.ico" />
+
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+
+	<body class="animated bounceInDown">
+		<div class="avatar">
+			<img src="static/img/me.jpg" alt="Avatar">
+		</div>
+
+		<div class="content">
+			<h1 class="title">Lau<br>Junyuan</h1>
+
+			<p>
+				Software Engineer<br>
+				4 years in finance as a risk developer<br>
+
+				UChicago MS Computer Science<br>
+				NYU Stern BS Finance<br>
+
+				
+			</p>
+
+			<ul class="social-icons">
+				<li><a class="linkedin" href="https://www.linkedin.com/in/junyuanlau" title="LinkedIn">LinkedIn</a></li>
+				<li><a class="github" href="https://github.com/yuanzai" title="Github">Github</a></li>
+			</ul>
+			<p>Get in touch. <br><a href="mailto:junyuan.lau@gmail.com">Email me</a><br>
+			<a href="https://drive.google.com/open?id=0BxnZYvt8qEW3SUtjWUpfOE02TEU">Resume</a><br>
+			</p>
+
+			<p>Projects
+				<a href="https://github.com/yuanzai/bblio">Legal Documents Search Engine project</a><br> <a href="{% url 'index' %}">Search Site</a> | <a href="{% url 'operations:index' %}">Webscaper UI</a><br>
+				<img src="https://github.com/yuanzai/bblio/raw/master/Main.png" class="screenshot">
+				Django | Python | Scrapy | ElasticSearch | AWS | MySQL
+				<hr>
+			</p>
+			<p>
+				<a href="https://github.com/yuanzai/java-final-project">Side scrolling shooter</a><br>
+				<img src="https://github.com/yuanzai/java-final-project/raw/master/java_game.png" class="screenshot">
+				Java | Swing
+				<hr>
+			</p>
+			<p>
+				<a href="https://github.com/yuanzai/Taxi-iPhone">Ride sharing app</a><br>
+				<img src="https://github.com/yuanzai/Taxi-iPhone/raw/master/hop.png" class="screenshot">
+				iOS | Objective-C
+				<hr>
+			</p>
+			<p>
+				<a href="https://github.com/yuanzai/DistributedSystems">Distributed Trading System</a><br>
+				Java | Swing
+				<hr>
+			</p>
+
+			<p>
+				<a href="https://github.com/yuanzai/VBA">VBA Library</a><br>
+				VBA
+				<hr>
+			</p>
+
+
+
+			
+		</div>
+	</body>
+</html>
